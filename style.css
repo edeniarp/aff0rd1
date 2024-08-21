@@ -27,16 +27,13 @@ body {
     font-weight: bold; /* Texte plus gras */
     border: none;
     border-radius: 5px;
-    background-color: #0f0;
-    color: #000;
+    background-color: #000;
+    color: #fff;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: color 0.3s;
-}
-
-#enter-btn:hover {
-    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(255, 0, 255, 0.5);
+    transition: color 0.3s, box-shadow 0.3s;
 }
 
 #enter-btn::before {
@@ -46,9 +43,10 @@ body {
     left: 50%;
     width: 200%;
     height: 200%;
-    background: rgba(0, 255, 0, 0.5);
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.5), rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.5));
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
+    animation: pulse 2s infinite;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -56,10 +54,24 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        background: linear-gradient(45deg, rgba(0, 255, 255, 0.5), rgba(255, 0, 255, 0.5));
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.5);
+        background: linear-gradient(45deg, rgba(0, 255, 255, 0.5), rgba(255, 0, 255, 0.5));
+    }
+}
+
 /* Contenu principal */
 #main-content {
-    display: none;
-    opacity: 0;
+    display: block; /* Les projets restent affichés */
+    opacity: 1;
     transition: opacity 1s ease-in-out;
 }
 
