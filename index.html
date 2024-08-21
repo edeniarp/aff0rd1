@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio - Développeur Web</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="intro-section">
@@ -55,17 +55,17 @@
         <section id="projects">
             <h2>Projets</h2>
             <div class="project-list">
-                <div class="project-item">
+                <div class="project-item" data-title="Projet 1" data-description="Description du projet 1..." data-image="image1.jpg">
                     <h3>Projet 1</h3>
-                    <p>Description du projet...</p>
+                    <p>Description courte du projet...</p>
                 </div>
-                <div class="project-item">
+                <div class="project-item" data-title="Projet 2" data-description="Description du projet 2..." data-image="image2.jpg">
                     <h3>Projet 2</h3>
-                    <p>Description du projet...</p>
+                    <p>Description courte du projet...</p>
                 </div>
-                <div class="project-item">
+                <div class="project-item" data-title="Projet 3" data-description="Description du projet 3..." data-image="image3.jpg">
                     <h3>Projet 3</h3>
-                    <p>Description du projet...</p>
+                    <p>Description courte du projet...</p>
                 </div>
             </div>
         </section>
@@ -80,6 +80,16 @@
                 <button type="submit">Envoyer</button>
             </form>
         </section>
+    </div>
+
+    <!-- Modal pour afficher les détails des projets -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="project-image" src="" alt="Project Image">
+            <h2 id="project-title"></h2>
+            <p id="project-description"></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
