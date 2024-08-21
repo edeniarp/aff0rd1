@@ -22,8 +22,9 @@ body {
 }
 
 #enter-btn {
-    padding: 15px 30px;
-    font-size: 1.5rem;
+    padding: 20px 40px;
+    font-size: 2rem; /* Augmenter la taille de la police */
+    font-weight: bold; /* Texte plus gras */
     border: none;
     border-radius: 5px;
     background-color: #0f0;
@@ -31,9 +32,14 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: color 0.3s;
 }
 
-#enter-btn:hover::before {
+#enter-btn:hover {
+    color: #fff;
+}
+
+#enter-btn::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -85,6 +91,7 @@ nav ul li a {
     text-decoration: none;
     color: #fff;
     font-size: 1.2rem;
+    font-weight: bold; /* Texte plus gras */
     position: relative;
     transition: color 0.3s;
 }
@@ -167,6 +174,7 @@ section h2.neon-text {
     text-align: center;
     height: 100vh;
     position: relative;
+    z-index: 1;
 }
 
 .project-detail img {
@@ -182,25 +190,32 @@ section h2.neon-text {
 }
 
 #back-btn {
-    padding: 15px 30px;
-    font-size: 1.5rem;
+    padding: 10px 20px;
+    font-size: 1.2rem; /* Taille réduite */
+    font-weight: bold; /* Texte plus gras */
     border: none;
     border-radius: 5px;
-    background-color: #f00;
+    background-color: #000;
     color: #fff;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Lueur rouge autour */
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#back-btn:hover::before {
+#back-btn:hover {
+    background-color: #222;
+}
+
+#back-btn::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 200%;
     height: 200%;
-    background: rgba(255, 0, 0, 0.5);
+    background: rgba(255, 0, 0, 0.3);
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s ease-in-out;
@@ -263,6 +278,7 @@ form button {
     color: #000;
     cursor: pointer;
     font-size: 1rem;
+    font-weight: bold; /* Texte plus gras */
     transition: background-color 0.3s;
 }
 
