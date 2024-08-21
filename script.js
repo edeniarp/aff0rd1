@@ -1,12 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Bouton ENTER et écran d'introduction
+    const enterButton = document.getElementById('enter-btn');
+    const introScreen = document.getElementById('intro-screen');
+    const mainContent = document.getElementById('main-content');
+
+    // Animation du bouton ENTER au clic
+    enterButton.addEventListener('click', function() {
+        introScreen.style.transition = 'opacity 1s ease-in-out';
+        introScreen.style.opacity = '0';
+        setTimeout(() => {
+            introScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            mainContent.style.opacity = '1';
+        }, 1000);
+    });
+
+    // Sections et liens de navigation
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
+    // Fonction pour gérer le surlignage du lien de navigation en fonction de la section visible
     window.addEventListener('scroll', function() {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 50) {
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
                 current = section.getAttribute('id');
             }
         });
@@ -19,20 +38,60 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Animation sur les cartes de projets
+    // Animation des cartes de projet au survol
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            card.style.boxShadow = '0 0 20px #0ff';
-            card.style.borderColor = '#0ff';
+            card.style.transform = 'translateY(-10px) rotateY(15deg)';
+            card.style.boxShadow = '0 15px 30px rgba(0, 255, 255, 0.5)';
         });
 
         card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) rotateY(0)';
             card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-            card.style.borderColor = '#444';
         });
     });
 
-    // Ajouter des animations supplémentaires ici
+    // Animation de défilement fluide pour la navigation
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Effet d'apparition des sections au scroll
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Animation de texte de bienvenue
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.style.opacity = 0;
+    heroContent.style.transform = 'translateY(50px)';
+    setTimeout(() => {
+        heroContent.style.transition = 'opacity 1.5s, transform 1.5s';
+        heroContent.style.opacity = 1;
+        heroContent.style.transform = 'translateY(0)';
+    }, 500);
 });
