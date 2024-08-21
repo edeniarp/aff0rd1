@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    overflow-x: hidden;
 }
 
 .intro-section {
@@ -15,6 +16,8 @@ body {
     color: white;
     text-align: center;
     animation: fadeIn 2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .intro-content {
@@ -38,12 +41,15 @@ body {
     padding: 15px 30px;
     cursor: pointer;
     margin-top: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 #enter-button:hover {
     background-color: #333;
     color: #fff;
+    transform: scale(1.1);
 }
 
 .main-content {
@@ -64,6 +70,9 @@ nav ul {
     padding: 10px;
     margin: 0;
     list-style: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav ul li {
@@ -74,15 +83,24 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    transform: scale(1.1);
+    color: #8D58BF;
 }
 
 section {
     padding: 50px 20px;
     text-align: center;
+    animation: floatAnimation 4s ease-in-out infinite;
+}
+
+@keyframes floatAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
 
 #skills .skill-bars {
@@ -106,6 +124,8 @@ section {
     background-color: #8D58BF;
     margin-top: 5px;
     transition: width 2s ease;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 #projects .project-list {
@@ -121,11 +141,27 @@ section {
     margin: 10px;
     width: 30%;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    cursor: pointer;
+    animation: bounceAnimation 3s ease-in-out infinite;
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+@keyframes bounceAnimation {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
 #contact form {
     max-width: 600px;
     margin: 0 auto;
+    animation: floatAnimation 4s ease-in-out infinite;
 }
 
 #contact form input, #contact form textarea {
@@ -133,7 +169,8 @@ section {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 #contact form button {
@@ -142,9 +179,73 @@ section {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 #contact form button:hover {
     background-color: #6D5BBA;
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeInModal 0.5s ease;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(0); }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
