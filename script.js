@@ -3,8 +3,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const enterButton = document.getElementById('enter-btn');
     const introScreen = document.getElementById('intro-screen');
     const mainContent = document.getElementById('main-content');
+    const projectPage = document.getElementById('project-page');
+    const projectImage = document.getElementById('project-image');
+    const projectDescription = document.getElementById('project-description');
+    const backButton = document.getElementById('back-btn');
 
-    // Animation du bouton ENTER au clic
+    const projects = {
+        project1: {
+            image: 'image1.jpg', // Remplace par le lien vers l'image du projet 1
+            description: 'Description détaillée du Projet 1.'
+        },
+        project2: {
+            image: 'image2.jpg', // Remplace par le lien vers l'image du projet 2
+            description: 'Description détaillée du Projet 2.'
+        }
+        // Ajoute plus de projets ici
+    };
+
+    // Transition vers la page principale au clic sur le bouton ENTER
     enterButton.addEventListener('click', function() {
         introScreen.style.transition = 'opacity 1s ease-in-out';
         introScreen.style.opacity = '0';
@@ -94,4 +110,32 @@ document.addEventListener('DOMContentLoaded', function() {
         heroContent.style.opacity = 1;
         heroContent.style.transform = 'translateY(0)';
     }, 500);
+
+    // Gérer le clic sur les cartes de projet
+    projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const projectId = this.getAttribute('data-project');
+            const project = projects[projectId];
+
+            // Appliquer l'effet de zoom et masquer la carte
+            card.classList.add('zoom-out');
+            setTimeout(() => {
+                mainContent.style.display = 'none';
+                projectImage.src = project.image;
+                projectDescription.textContent = project.description;
+                projectPage.style.display = 'block';
+            }, 600);
+        });
+    });
+
+    // Gérer le retour à la page principale
+    backButton.addEventListener('click', function() {
+        projectPage.classList.add('fade-out');
+        setTimeout(() => {
+            projectPage.style.display = 'none';
+            mainContent.style.display = 'block';
+            mainContent.classList.add('fade-in');
+            projectPage.classList.remove('fade-out');
+        }, 1000);
+    });
 });
